@@ -1,0 +1,49 @@
+.hero {
+    text-align: center;
+    padding: 50px;
+    background-color: #f8f9fa;
+}
+
+.testimonials {
+    background: #e9ecef;
+    padding: 40px 0;
+}
+
+.blog {
+    padding: 40px 0;
+}
+
+.course-detail {
+    padding: 20px;
+}
+
+footer {
+    background: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 10px;
+}
+
+
+.courses, .lesson-booking {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.lesson-times {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.lesson-slot {
+    margin: 10px;
+}
+
+

@@ -1,0 +1,56 @@
+<!-- main/templates/main/teacher_dashboard.html -->
+{% extends 'english_school/base.html' %}
+
+{% block content %}
+<h2>Teacher Dashboard</h2>
+
+<h3>Assigned Lessons</h3>
+
+{% if lessons %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Student</th>
+            <th>Date & Time</th>
+            <th>Zoom Link</th>
+            <th>Goal</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson.course.title }}</td>
+            <td>{{ lesson.student.user.username }}</td>
+            <td>{{ lesson.date_time }}</td>
+            <td><a href="{{ lesson.zoom_link }}" target="_blank">Join Zoom</a></td>
+            <td>{{ lesson.goal }}</td>
+            <td>{{ lesson.completed }}</td>
+            <td>
+                {% if not lesson.completed %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="lesson_id" value="{{ lesson.id }}">
+                    <div class="form-group">
+                        <label for="goal">Set Goal:</label>
+                        <input type="text" name="goal" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Mark as Completed</button>
+                </form>
+                {% else %}
+                <span class="text-success">Completed</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <div class="alert alert-info">
+        You have not been assigned to any lessons yet.
+    </div>
+    <p>If you believe you should have lessons assigned, please contact your administrator.</p>
+{% endif %}
+{% endblock %}

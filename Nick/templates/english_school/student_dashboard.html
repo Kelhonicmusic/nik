@@ -1,0 +1,50 @@
+<!-- main/templates/main/student_dashboard.html -->
+{% extends 'english_school/base.html' %}
+
+{% block content %}
+<h2>Student Dashboard</h2>
+
+<h3>Your Enrollments</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Date Enrolled</th>
+            <th>Expiry Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enrollment in enrollments %}
+        <tr>
+            <td>{{ enrollment.course.title }}</td>
+            <td>{{ enrollment.date_enrolled }}</td>
+            <td>{{ enrollment.expiry_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Your Upcoming Lessons</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Course</th>
+            <th>Date & Time</th>
+            <th>Zoom Link</th>
+            <th>Completed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>{{ lesson.course.title }}</td>
+            <td>{{ lesson.date_time }}</td>
+            <td><a href="{{ lesson.zoom_link }}" target="_blank">Join Zoom</a></td>
+            <td>{{ lesson.completed }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'book_lesson' %}" class="btn btn-primary">Book a Lesson</a>
+{% endblock %}
